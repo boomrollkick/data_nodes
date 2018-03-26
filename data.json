@@ -1,0 +1,402 @@
+[
+    {
+      "Node_ID": 1,
+      "Name": "James",
+      "Reliability": 0.23,
+      "Score": "LIES",
+      "Links": "[41,35,28,23,30]",
+      "Band": "Led Zeppelin"
+    },
+    {
+      "Node_ID": 2,
+      "Name": "Mary",
+      "Reliability": 0.65,
+      "Score": "NEUTRAL",
+      "Links": "[36,31,48]",
+      "Band": "The Who"
+    },
+    {
+      "Node_ID": 3,
+      "Name": "John",
+      "Reliability": 0.97,
+      "Score": "TRUTH",
+      "Links": "[6,41,49,38,49]",
+      "Band": "David Bowie"
+    },
+    {
+      "Node_ID": 4,
+      "Name": "Patricia",
+      "Reliability": 0.41,
+      "Score": "NEUTRAL",
+      "Links": "[18,23,26,30,6]",
+      "Band": "Marvin Gaye"
+    },
+    {
+      "Node_ID": 5,
+      "Name": "Robert",
+      "Reliability": 0.41,
+      "Score": "NEUTRAL",
+      "Links": "[18,38,17,13]",
+      "Band": "The Rolling Stones"
+    },
+    {
+      "Node_ID": 6,
+      "Name": "Jennifer",
+      "Reliability": 0.11,
+      "Score": "LIES",
+      "Links": "[17,19,33]",
+      "Band": "Joni Mitchell"
+    },
+    {
+      "Node_ID": 7,
+      "Name": "Michael",
+      "Reliability": 0.02,
+      "Score": "LIES",
+      "Links": "[46,1,23,13,24,25]",
+      "Band": "Pink Floyd"
+    },
+    {
+      "Node_ID": 8,
+      "Name": "Elizabeth",
+      "Reliability": 0.8,
+      "Score": "TRUTH",
+      "Links": "[45,26,37,17,27]",
+      "Band": "Can"
+    },
+    {
+      "Node_ID": 9,
+      "Name": "William",
+      "Reliability": 0.46,
+      "Score": "NEUTRAL",
+      "Links": "[2,48,49,44,46,7,39,21]",
+      "Band": "The Doors"
+    },
+    {
+      "Node_ID": 10,
+      "Name": "Linda",
+      "Reliability": 0.37,
+      "Score": "NEUTRAL",
+      "Links": "[36,17]",
+      "Band": "Yes"
+    },
+    {
+      "Node_ID": 11,
+      "Name": "David",
+      "Reliability": 0.47,
+      "Score": "NEUTRAL",
+      "Links": "[24]",
+      "Band": "John Lennon"
+    },
+    {
+      "Node_ID": 12,
+      "Name": "Barbara",
+      "Reliability": 0.98,
+      "Score": "TRUTH",
+      "Links": "[22]",
+      "Band": "Carole King"
+    },
+    {
+      "Node_ID": 13,
+      "Name": "Richard",
+      "Reliability": 0.74,
+      "Score": "TRUTH",
+      "Links": "[26,5,40,17,20,10,33,35]",
+      "Band": "Nick Drake"
+    },
+    {
+      "Node_ID": 14,
+      "Name": "Susan",
+      "Reliability": 1,
+      "Score": "TRUTH",
+      "Links": "[2,19,27,31]",
+      "Band": "The Allman Brothers Band"
+    },
+    {
+      "Node_ID": 15,
+      "Name": "Joseph",
+      "Reliability": 0.42,
+      "Score": "NEUTRAL",
+      "Links": "[8,48,22,37]",
+      "Band": "Jethro Tull"
+    },
+    {
+      "Node_ID": 16,
+      "Name": "Jessica",
+      "Reliability": 0.79,
+      "Score": "TRUTH",
+      "Links": "[32,36,34,47,49]",
+      "Band": "T. Rex"
+    },
+    {
+      "Node_ID": 17,
+      "Name": "Thomas",
+      "Reliability": 0.36,
+      "Score": "NEUTRAL",
+      "Links": "[36,47]",
+      "Band": "Black Sabbath"
+    },
+    {
+      "Node_ID": 18,
+      "Name": "Margaret",
+      "Reliability": 0.57,
+      "Score": "NEUTRAL",
+      "Links": "[31,20,25,33]",
+      "Band": "Paul & Linda McCartney"
+    },
+    {
+      "Node_ID": 19,
+      "Name": "Charles",
+      "Reliability": 0.45,
+      "Score": "NEUTRAL",
+      "Links": "[14]",
+      "Band": "Sly & The Family Stone"
+    },
+    {
+      "Node_ID": 20,
+      "Name": "Sarah",
+      "Reliability": 0.97,
+      "Score": "TRUTH",
+      "Links": "[5,32,24,47,43,27,40,18]",
+      "Band": "Leonard Cohen"
+    },
+    {
+      "Node_ID": 21,
+      "Name": "Christopher",
+      "Reliability": 0.19,
+      "Score": "LIES",
+      "Links": "[35,39,27]",
+      "Band": "Funkadelic"
+    },
+    {
+      "Node_ID": 22,
+      "Name": "Karen",
+      "Reliability": 0.19,
+      "Score": "LIES",
+      "Links": "[39,42,39,17,45]",
+      "Band": "Happy End"
+    },
+    {
+      "Node_ID": 23,
+      "Name": "Daniel",
+      "Reliability": 0.86,
+      "Score": "TRUTH",
+      "Links": "[14]",
+      "Band": "Serge Gainsbourg"
+    },
+    {
+      "Node_ID": 24,
+      "Name": "Nancy",
+      "Reliability": 0.32,
+      "Score": "NEUTRAL",
+      "Links": "[17,20,25,21,7]",
+      "Band": "Janis Joplin"
+    },
+    {
+      "Node_ID": 25,
+      "Name": "Matthew",
+      "Reliability": 0.22,
+      "Score": "LIES",
+      "Links": "[43]",
+      "Band": "Faust"
+    },
+    {
+      "Node_ID": 26,
+      "Name": "Betty",
+      "Reliability": 0.32,
+      "Score": "NEUTRAL",
+      "Links": "[49,21,18,11]",
+      "Band": "Genesis"
+    },
+    {
+      "Node_ID": 27,
+      "Name": "Anthony",
+      "Reliability": 0.03,
+      "Score": "LIES",
+      "Links": "[31,18,26,19,31,40]",
+      "Band": "Rod Stewart"
+    },
+    {
+      "Node_ID": 28,
+      "Name": "Lisa",
+      "Reliability": 0.4,
+      "Score": "NEUTRAL",
+      "Links": "[38,34,21,30]",
+      "Band": "Cat Stevens"
+    },
+    {
+      "Node_ID": 29,
+      "Name": "Donald",
+      "Reliability": 0.72,
+      "Score": "TRUTH",
+      "Links": "[17,23,19,33,25,39,26,44]",
+      "Band": "Elton John"
+    },
+    {
+      "Node_ID": 30,
+      "Name": "Dorothy",
+      "Reliability": 0.44,
+      "Score": "NEUTRAL",
+      "Links": "[34]",
+      "Band": "Caravan"
+    },
+    {
+      "Node_ID": 31,
+      "Name": "Mark",
+      "Reliability": 0.44,
+      "Score": "NEUTRAL",
+      "Links": "[40,16,37]",
+      "Band": "Harry Nilsson"
+    },
+    {
+      "Node_ID": 32,
+      "Name": "Sandra",
+      "Reliability": 0.01,
+      "Score": "LIES",
+      "Links": "[40,31]",
+      "Band": "Mahavishnu Orchestra"
+    },
+    {
+      "Node_ID": 33,
+      "Name": "Paul",
+      "Reliability": 0.6,
+      "Score": "NEUTRAL",
+      "Links": "[3,19,36,25,49]",
+      "Band": "Van Der Graaf Generator"
+    },
+    {
+      "Node_ID": 34,
+      "Name": "Ashley",
+      "Reliability": 0.26,
+      "Score": "LIES",
+      "Links": "[4,37,25,17,24,29,33]",
+      "Band": "The Beach Boys"
+    },
+    {
+      "Node_ID": 35,
+      "Name": "Steven",
+      "Reliability": 0.54,
+      "Score": "NEUTRAL",
+      "Links": "[9,1,13,21]",
+      "Band": "Emerson, Lake & Palmer"
+    },
+    {
+      "Node_ID": 36,
+      "Name": "Kimberly",
+      "Reliability": 0.61,
+      "Score": "NEUTRAL",
+      "Links": "[45,42,40,10,23,42,23]",
+      "Band": "Chico Buarque"
+    },
+    {
+      "Node_ID": 37,
+      "Name": "Andrew",
+      "Reliability": 0.36,
+      "Score": "NEUTRAL",
+      "Links": "[20,44]",
+      "Band": "The Kinks"
+    },
+    {
+      "Node_ID": 38,
+      "Name": "Donna",
+      "Reliability": 0.35,
+      "Score": "NEUTRAL",
+      "Links": "[22]",
+      "Band": "John Prine"
+    },
+    {
+      "Node_ID": 39,
+      "Name": "Kenneth",
+      "Reliability": 0.27,
+      "Score": "LIES",
+      "Links": "[2,34,5,30,5]",
+      "Band": "Miles Davis"
+    },
+    {
+      "Node_ID": 40,
+      "Name": "Carol",
+      "Reliability": 0.36,
+      "Score": "NEUTRAL",
+      "Links": "[9,19,24,9,37,10,17]",
+      "Band": "Comus"
+    },
+    {
+      "Node_ID": 41,
+      "Name": "George",
+      "Reliability": 0.19,
+      "Score": "LIES",
+      "Links": "[9,42,42,10]",
+      "Band": "David Crosby"
+    },
+    {
+      "Node_ID": 42,
+      "Name": "Michelle",
+      "Reliability": 0.55,
+      "Score": "NEUTRAL",
+      "Links": "[33,25,19,34,26]",
+      "Band": "Alice Coltrane"
+    },
+    {
+      "Node_ID": 43,
+      "Name": "Joshua",
+      "Reliability": 0.43,
+      "Score": "NEUTRAL",
+      "Links": "[28,16,22,34,20,13,7]",
+      "Band": "Alice Cooper"
+    },
+    {
+      "Node_ID": 44,
+      "Name": "Emily",
+      "Reliability": 0.35,
+      "Score": "NEUTRAL",
+      "Links": "[19,14,9,26,2,16]",
+      "Band": "Gil Scott-Heron"
+    },
+    {
+      "Node_ID": 45,
+      "Name": "Kevin",
+      "Reliability": 0.76,
+      "Score": "TRUTH",
+      "Links": "[43,22,18,4,13,42]",
+      "Band": "Santana"
+    },
+    {
+      "Node_ID": 46,
+      "Name": "Amanda",
+      "Reliability": 0.72,
+      "Score": "TRUTH",
+      "Links": "[28,1,22,43]",
+      "Band": "King Crimson"
+    },
+    {
+      "Node_ID": 47,
+      "Name": "Brian",
+      "Reliability": 0.16,
+      "Score": "LIES",
+      "Links": "[7,26]",
+      "Band": "Deep Purple"
+    },
+    {
+      "Node_ID": 48,
+      "Name": "Helen",
+      "Reliability": 0.88,
+      "Score": "TRUTH",
+      "Links": "[24,13,46,43]",
+      "Band": "Traffic"
+    },
+    {
+      "Node_ID": 49,
+      "Name": "Edward",
+      "Reliability": 0.57,
+      "Score": "NEUTRAL",
+      "Links": "[20,26,36,38,35,31,26,33]",
+      "Band": "Badfinger"
+    },
+    {
+      "Node_ID": 50,
+      "Name": "Melissa",
+      "Reliability": 0.79,
+      "Score": "TRUTH",
+      "Links": "[34]",
+      "Band": "Roy Harper"
+    }
+   ]
