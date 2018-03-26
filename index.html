@@ -104,6 +104,7 @@ time, mark, audio, video {
 						return response.json();
 					}).then(data => {
 						this.dataSet = data;
+						
 						this.nodeObject = mapTheNodes(this.dataSet, 0);
 						this.zoomNode();
 					})
@@ -144,13 +145,13 @@ time, mark, audio, video {
 				.on("tick", ticked);
 		
 		var passOut = function(nodes, id) {
-
 			id = parseInt(id);
+	
+
 			if (id !== 0){
 				loopThroughData(nodes, id);
-			}
 				
-				
+			}	
 		}
 
 
@@ -164,7 +165,6 @@ time, mark, audio, video {
 
 		var loopThroughData = function(nodes, id) {
 			nodeSet = [];
-
 			links = [];
 			
 			if (!nodes.state) {
@@ -179,28 +179,31 @@ time, mark, audio, video {
 			var limit = 2;
 
 			mapTheTree(nodes, id, id, 1, limit);
-
+			
 			for (person in nodes) {
 
 				if (person !== 'state') {
 
 					if (nodes[person].group!==null||nodes[person].group!==undefined) {
-
-						if (nodes[person].modified !== nodes.state.root) {
-
+				
+						if (nodes[person].modified !== nodes.state.root) {	
+							
 							nodes[person].modified = null;
 							nodes[person].group = limit+1;
-
+					
+							
 						}
 					
 					}
 					else{
+				
 						nodes[person].modified = null;
 						nodes[person].group = limit+1;
+					
+
 					}
-
+				
 					nodeSet.push(nodes[person]);
-
 					let link = eval(nodes[person].Links);
 
 					link.map(function(index) {
@@ -230,12 +233,10 @@ time, mark, audio, video {
 			}
 
 
-			Links.forEach(function(link) {
-
-				if (origin !== nodes[link]['modified']) {
+			Links.forEach(function(link) {	
+				if ((origin !== nodes[link]['modified'])||((origin === nodes[link]['modified'])&&(depth<nodes[link]['group']))) {
 					nodes[link]['group'] = depth;
 					nodes[link]['modified'] = origin;
-
 					if (depth !== limit) {
 						mapTheTree(nodes, link, origin, depth + 1, limit);
 					}
