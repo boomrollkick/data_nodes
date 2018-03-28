@@ -239,13 +239,10 @@ time, mark, audio, video {
 						if (nodes[person].modified !== dataStore.state.root) {	
 							nodes[person].modified = null;
 							nodes[person].group = parseInt(limit)+1;
-				//			console.log(nodes[person].Node_ID+'-'+nodes[person].group);
 						}
 					
 					}
-	
 					dataStore.nodeSet.push(nodes[person]);
-				
 				}
 			}
 
@@ -266,13 +263,7 @@ time, mark, audio, video {
 					})
 			}
 			
-	
-		
-			
-			
-			
 			restart(dataStore.nodeSet, dataStore.links, limit);
-
 		}
 
 		var mapTheTree = function(nodes, id, origin, depth, limit, length=null) {
