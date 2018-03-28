@@ -38,7 +38,7 @@ time, mark, audio, video {
 			align-items: flex-start;
 		}
 	
-		.nodeButton {
+		div.nodeButton {
 			border: none;
 			margin: 5px;
 			width: 250px;
@@ -47,8 +47,18 @@ time, mark, audio, video {
 			display: block;
 			min-width: 250px;
 		}
-		.nodeButton:hover {
+		div.nodeButton:hover {
 			background-color: aqua;
+		}
+		div.nodeButton:active
+		{
+    	border: none;
+			
+		}
+		div.nodeButton:focus
+		{
+    	border: none;
+			
 		}
 		.nodeButtonContainer{
 			display: flex;
@@ -68,7 +78,15 @@ time, mark, audio, video {
 	<div id="app">
 	
 			<div class="nodeButtonContainer">
-				<a v-for="(node, index) in nodeObject" @click="zoomNode(index, $event)" class="nodeButton">{{node.Name}} - {{node.Band}}</a>
+			<div>
+			Filter:
+				<input type='text' v-model='filterText'>
+			</div>
+			<div>
+				<input type="radio" v-model="level" value="1">1 week
+  				<input type="radio" v-model="level" value="2">2 week
+			</div>
+				<div v-for="(node, index) in filteredNodes" @click="zoomNode(index, $event)" class="nodeButton">{{node.Name}} - {{node.Band}}</div>
 			</div>
 			<div>
 				<div style="display: flex; 
@@ -84,6 +102,7 @@ time, mark, audio, video {
 	</div>
 
 	<script>
+		
 	
 		new Vue({
 			el: "#app",
@@ -92,11 +111,44 @@ time, mark, audio, video {
 				dataSet: {},
 				nodeObject: {},
 				nodes: [],
+				filterText:'',
 				level: 1
 
 			},
 			created: function() {
 				this.getData();
+			},
+			computed: {
+				filteredNodes: function() {
+					var filterTextArray = [];
+					var fileObject = {};
+					
+					if(this.filterText===''){
+						return this.nodeObject
+					}
+					
+					filterTextArray = this.filterText.split(' ');
+				
+					for (var key in this.nodeObject) {
+						if(this.nodeObject[key].Band){
+							var name = this.nodeObject[key].Name.toLowerCase();
+							var bandName = this.nodeObject[key].Band.toLowerCase();
+							var thisObject = this.nodeObject[key];
+							if(filterTextArray.length>0){
+								filterTextArray.map(function(chunk){
+									if(chunk!==''){
+										chunk = chunk.toLowerCase();
+										if(name.indexOf(chunk)>-1||bandName.indexOf(chunk)>-1){
+											fileObject[key] = thisObject;
+										}
+									}
+								});
+							}
+
+						}
+					}
+					return fileObject;
+				}
 			},
 			methods: {
 				getData() {
@@ -116,7 +168,7 @@ time, mark, audio, video {
 					if (event)
 						event.preventDefault()
 					
-					passOut(this.nodeObject, id);
+					passOut(this.nodeObject, id, this.level);
 				},
 				setWeek(week) {
 					if (week !== this.level)
@@ -124,33 +176,33 @@ time, mark, audio, video {
 				},
 			}
 		});
-
-		var nodeSet = [];
-		var links = [];
+		var dataStore = {};
+		dataStore.nodeSet = [];
+		dataStore.links = [];
 		
-		var simulation = d3.forceSimulation(nodeSet)
-				.force("charge", d3.forceManyBody().strength(-70))
-				.force("link", d3.forceLink(links).distance(function(d) {
-			
+		
+		var simulation = d3.forceSimulation(dataStore.nodeSet)
+				.force("charge", d3.forceManyBody().strength(function(d){
+					 return-1*(d.group+1)*30;
+				}))
+				.force("link", d3.forceLink(dataStore.links).distance(function(d) {
 					if(d.source.group===d.target.group)
-						return 30;
+						return d.source.group*30;
 					return ((Math.abs(d.source.group-d.target.group)+1)*100);
 								
 				}))
 				.force("y", d3.forceY())
 				.force("x", d3.forceX().x(function(d) {
 		
-				return (d.group * 175)-300;
+				return (d.group * 100)-100;
 				}))
 				.alphaTarget(1)
 				.on("tick", ticked);
 		
-		var passOut = function(nodes, id) {
+		var passOut = function(nodes, id, limit) {
 			id = parseInt(id);
-	
-
 			if (id !== 0){
-				loopThroughData(nodes, id);
+				loopThroughData(nodes, id, limit);
 				
 			}	
 		}
@@ -164,88 +216,89 @@ time, mark, audio, video {
 			return tempObject;
 		}
 
-		var loopThroughData = function(nodes, id) {
-			nodeSet = [];
-			links = [];
+		var loopThroughData = function(nodes, id, limit) {
+			dataStore.nodeSet = [];
+			dataStore.links = [];
 			
-			if (!nodes.state) {
+			if (!dataStore.state) {
 				
-				nodes.state = {};
-				nodes.state.root = id;
-				nodes.state.next = [];
+				dataStore.state = {};
+				dataStore.state.root = id;
 			} else {
-				nodes.state.root = id;
+				dataStore.state.root = id;
 			}
-		
-			var limit = 2;
-
+			
 			mapTheTree(nodes, id, id, 1, limit);
 			
-			for (person in nodes) {
+				for (person in nodes) {
 
 				if (person !== 'state') {
 
 					if (nodes[person].group!==null||nodes[person].group!==undefined) {
 				
-						if (nodes[person].modified !== nodes.state.root) {	
-							
+						if (nodes[person].modified !== dataStore.state.root) {	
 							nodes[person].modified = null;
-							nodes[person].group = limit+1;
-					
-							
+							nodes[person].group = parseInt(limit)+1;
+				//			console.log(nodes[person].Node_ID+'-'+nodes[person].group);
 						}
 					
 					}
-					else{
+	
+					dataStore.nodeSet.push(nodes[person]);
 				
-						nodes[person].modified = null;
-						nodes[person].group = limit+1;
-					
-
-					}
-				
-					nodeSet.push(nodes[person]);
-					let link = eval(nodes[person].Links);
-
-					link.map(function(index) {
-						if(nodes[person].group<=nodes[index].group){
-						  links.push({
-							source: nodes[person].Node_ID - 1,
-							target: index - 1
-						});
-					}
-					})
 				}
 			}
 
-	
+			for (person in nodes) {
 
-			restart(nodeSet, links, limit);
+			let link = eval(nodes[person].Links);
+			
+					link.map(function(index) {
+						if(nodes[person].group<=nodes[index].group){
+							if(nodes[index].group<=parseInt(limit)&&nodes[person].group<=parseInt(limit)){
+							   dataStore.links.push({
+								source: nodes[person].Node_ID - 1,
+								target: index - 1
+							}); 
+						}
+						  
+					}
+					})
+			}
+			
+	
+		
+			
+			
+			
+			restart(dataStore.nodeSet, dataStore.links, limit);
 
 		}
 
-		var mapTheTree = function(nodes, id, origin, depth, limit) {
+		var mapTheTree = function(nodes, id, origin, depth, limit, length=null) {
+			
 			var Links;
+			
 			Links = eval(nodes[id].Links);
-
 			if (id === origin) {
+				length=Links.length;
 				nodes[id]['group'] = 0;
 				nodes[id]['modified'] = id;
 			}
 
-
-			Links.forEach(function(link) {	
+			Links.forEach(function(link, index) {	
+				
 				if ((origin !== nodes[link]['modified'])||((origin === nodes[link]['modified'])&&(depth<nodes[link]['group']))) {
 					nodes[link]['group'] = depth;
+					
 					nodes[link]['modified'] = origin;
-					if (depth !== limit) {
-						mapTheTree(nodes, link, origin, depth + 1, limit);
+					if (depth+1 <= parseInt(limit)) {
+						mapTheTree(nodes, link, origin, depth + 1, limit, length);
 					}
 				}
-
 			});
 
-
+		
 			return this;
 		}
 
@@ -266,40 +319,41 @@ time, mark, audio, video {
 		
 		var level = ['Origin','1 Level', '2nd Level'];
 		var trust = [['Truth','grey'],['Neutral','tan'], ['Lies','black']];
-		level.map(function(value, index){
-		var compX = (index+1)*100;
-			
-		svg.append("text")
-        .style("fill", "black")
-        .attr("x", compX+20)
-		.attr("y", 20)
-		.attr("dy", ".35em")
-		.text(level[index])
-			
 		
-		svg.append("circle")
-        .style("stroke", colors[index])
-        .style("fill", colors[index])
-        .attr("width", 40)
-		.attr("height", 40)
-        .attr("cx", compX)
-        .attr("cy", 20)
-		.attr("r", 8)
-			
-		svg.append("text")
-        .style("fill", 'black')
-        .attr("x", compX+20)
-		.attr("y", 60)
-		.attr("dy", ".35em")
-		.text(trust[index][0])
- 		
-		svg.append("circle")
-        .style("stroke", trust[index][1])
-        .style("fill", 'grey')
-		.attr("stroke-width","3")
-        .attr("cx", compX)
-        .attr("cy", 60)
-		.attr("r", 8)
+		level.map(function(value, index){
+			var compX = (index+1)*100;
+
+			svg.append("text")
+			.style("fill", "black")
+			.attr("x", compX+20)
+			.attr("y", 20)
+			.attr("dy", ".35em")
+			.text(level[index])
+
+
+			svg.append("circle")
+			.style("stroke", colors[index])
+			.style("fill", colors[index])
+			.attr("width", 40)
+			.attr("height", 40)
+			.attr("cx", compX)
+			.attr("cy", 20)
+			.attr("r", 8)
+
+			svg.append("text")
+			.style("fill", 'black')
+			.attr("x", compX+20)
+			.attr("y", 60)
+			.attr("dy", ".35em")
+			.text(trust[index][0])
+
+			svg.append("circle")
+			.style("stroke", trust[index][1])
+			.style("fill", 'grey')
+			.attr("stroke-width","3")
+			.attr("cx", compX)
+			.attr("cy", 60)
+			.attr("r", 8)
 		});
 		
 
@@ -337,30 +391,6 @@ time, mark, audio, video {
 
 			simulation.nodes(nodes);
 			simulation.force("link").links(links)
-			
-			
-		
-		/*	
-			g.selectAll(".bar-label")
-			.data(params.data)
-			.enter()
-			.append("text")
-			.classed("bar-label", true)
-			.attr("x", function(d,i){
-				return x(d);
-			})
-			.attr("dx", -4)
-			.attr("y", function(d,i){
-				return y(i);
-			})
-			.attr("dy", function(d,i){
-				return y(1)/1.5+2;
-			})
-			.text(function(d,i){
-				return d;
-			});
-			*/
-
 			simulation.alpha(1).restart(nodes, links, limit);
 		}
 
